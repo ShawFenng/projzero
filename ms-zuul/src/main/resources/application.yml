@@ -1,0 +1,17 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 80
+spring:
+  application:
+    name: ms-zuul
+zuul:
+  routes:
+    ms-auth:
+      path: /auth/**
+      serviceId: ms-auth
+    service-zero:
+      path: /sz/**
+      serviceId: service-zero

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monicastudio.msauth.mapper.MsRoleMapper">
+
+    <resultMap type="MsRole" id="MsRoleResult">
+        <result column="uuid" property="uuid"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <!--<insert id="insert" parameterType="MsUser">
+        insert into ms_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">uuid,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="nickName != null">nick_name,</if>
+            <if test="email != null">email,</if>
+            <if test="phone != null">phone,</if>
+            <if test="avatar != null">avatar,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">#{uuid},</if>
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="nickName != null">#{nickName},</if>
+            <if test="email != null">#{email !=},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="avatar != null">#{avatar},</if>
+        </trim>
+    </insert>-->
+
+    <select id="readRolesByUser" parameterType="String" resultMap="MsRoleResult">
+        select uuid, role_name, role_code, sort
+        from ms_role
+        where uuid in (
+            select role_uuid from ms_user_role
+            where user_uuid = #{userUuid}
+        )
+    </select>
+
+    <!--<sql id="selectRequirementVo">
+        select id, name, description, industry_classify, service_type, demand, publish_date, end_date, link_man, link_phone,
+        settlement_type, amount, status, click, create_time, create_by, update_time, update_by, delete_time, delete_by, del_flag,
+        agent_demand
+        from business_requirement
+    </sql>-->
+
+    <!--<select id="selectRequirementById" parameterType="Long" resultMap="RequirementResult">
+        <include refid="selectRequirementVo"/>
+        where id = #{id} for update
+    </select>-->
+
+</mapper>

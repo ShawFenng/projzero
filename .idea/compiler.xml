@@ -8,12 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ms-auth" />
-        <module name="ms-eureka" />
-        <module name="common" />
-        <module name="ms-zuul" />
-        <module name="service-zero" />
         <module name="ms-utils" />
-        <module name="projzero" />
+        <module name="common" />
+        <module name="ms-upms" />
+        <module name="ms-zuul" />
+        <module name="ms-eureka" />
+        <module name="service-zero" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -31,6 +31,7 @@
       <module name="ms-auth0" options="-parameters" />
       <module name="ms-common" options="-parameters" />
       <module name="ms-eureka" options="-parameters" />
+      <module name="ms-upms" options="-parameters" />
       <module name="ms-utils" options="-parameters" />
       <module name="ms-zuul" options="-parameters" />
       <module name="mszuul" options="-parameters" />

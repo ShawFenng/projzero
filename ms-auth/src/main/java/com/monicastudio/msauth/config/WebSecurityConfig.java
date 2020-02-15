@@ -1,6 +1,8 @@
 package com.monicastudio.msauth.config;
 
+import com.monicastudio.msauth.service.MsUserDetailService;
 import com.monicastudio.mscommon.utils.DemoPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +19,9 @@ import java.util.ArrayList;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private MsUserDetailService msUserDetailService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -25,10 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("monica")
-                .password(passwordEncoder().encode("123456"))
-                .authorities(new ArrayList<>());
+        auth.userDetailsService(msUserDetailService);
     }
 
     /**
@@ -51,6 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new DemoPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }

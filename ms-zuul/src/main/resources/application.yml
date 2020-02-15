@@ -12,6 +12,9 @@ zuul:
     ms-auth:
       path: /auth/**
       serviceId: ms-auth
+    ms-upms:
+      path: /upms/**
+      serviceId: ms-upms
     service-zero:
       path: /sz/**
       serviceId: service-zero
